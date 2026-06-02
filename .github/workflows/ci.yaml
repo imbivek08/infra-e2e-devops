@@ -52,7 +52,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: ${{ matrix.component }}
-        run: npm ci
+        run: npm i
 
       - name: Run tests
         working-directory: ${{ matrix.component }}
@@ -78,7 +78,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: ${{ matrix.component }}
-        run: npm ci
+        run: npm i
 
       - name: npm audit
         working-directory: ${{ matrix.component }}
