@@ -97,7 +97,7 @@ function CommentSection({ postId, comments, onUpdate }) {
 
       {comments.length === 0 && (
         <div style={{ textAlign: 'center', color: 'var(--text-muted)', padding: '2rem' }}>
-          No comments yet. Be the first to vibe! ✨
+          No comments yet. Be the first to vibe! Write you openion✨
         </div>
       )}
     </div>
