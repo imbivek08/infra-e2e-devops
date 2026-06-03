@@ -5,7 +5,9 @@ on:
     branches:
       - main
       - dev
-
+    paths:
+      - "backend/**"
+      - "frontend/**"
 env:
   REGISTRY: docker.io
   IMAGE_BACKEND: blog-backend
