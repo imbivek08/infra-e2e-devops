@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: jerney-frontend
-          image: imbivek01/blog-frontend:latest
+          image: imbivek01/blog-frontend:087231a4
           ports:
             - containerPort: 80
           readinessProbe:
