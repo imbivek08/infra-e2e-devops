@@ -31,12 +31,12 @@ jobs:
       - name: Update backend image tag
         run: |
           sed -i "s|image: imbivek01/blog-backend:.*|image: imbivek01/blog-backend:${{ steps.meta.outputs.tag }}|g" \
-            k8s/backend/deployment.yml
+            k8s/backend/deployment.yaml
 
       - name: Update frontend image tag
         run: |
           sed -i "s|image: imbivek01/blog-frontend:.*|image: imbivek01/blog-frontend:${{ steps.meta.outputs.tag }}|g" \
-            k8s/frontend/deployment.yml
+            k8s/frontend/deployment.yaml
 
       - name: Commit and push updated manifests
         run: |
