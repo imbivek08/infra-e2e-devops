@@ -44,7 +44,7 @@ function CreatePost() {
       <Link to="/" className="post-detail-back">
         <HiArrowLeft size={16} /> Back to feed
       </Link>
-      <h1>Create a New Post ✍️</h1>
+      <h1>Create a New Post here</h1>
 
       <form className="form-card" onSubmit={handleSubmit}>
         <div className="form-group">
