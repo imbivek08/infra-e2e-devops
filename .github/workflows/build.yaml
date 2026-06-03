@@ -8,8 +8,8 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_BACKEND: ${{ secrets.DOCKER_USERNAME }}/blog-backend
-  IMAGE_FRONTEND: ${{ secrets.DOCKER_USERNAME }}/blog-frontend
+  IMAGE_BACKEND: blog-backend
+  IMAGE_FRONTEND: blog-frontend
 
 jobs:
   build:
@@ -87,16 +87,21 @@ jobs:
     needs: scan
     strategy:
       matrix:
-        include:
-          - component: backend
-            image: ${{ secrets.DOCKER_USERNAME }}/blog-backend
-          - component: frontend
-            image: ${{ secrets.DOCKER_USERNAME }}/blog-frontend
+        component: [backend, frontend]
 
     steps:
       - name: Set image tag
         id: meta
         run: echo "tag=${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
+
+      - name: Set image name
+        id: image
+        run: |
+          if [ "${{ matrix.component }}" = "backend" ]; then
+            echo "name=${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_BACKEND }}" >> $GITHUB_OUTPUT
+          else
+            echo "name=${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_FRONTEND }}" >> $GITHUB_OUTPUT
+          fi
 
       - name: Download image artifact
         uses: actions/download-artifact@v4
@@ -115,10 +120,10 @@ jobs:
 
       - name: Tag and push image
         run: |
-          docker tag ${{ matrix.component }}:${{ steps.meta.outputs.tag }} ${{ matrix.image }}:${{ steps.meta.outputs.tag }}
-          docker tag ${{ matrix.component }}:${{ steps.meta.outputs.tag }} ${{ matrix.image }}:latest
-          docker push ${{ matrix.image }}:${{ steps.meta.outputs.tag }}
-          docker push ${{ matrix.image }}:latest
+          docker tag ${{ matrix.component }}:${{ steps.meta.outputs.tag }} ${{ steps.image.outputs.name }}:${{ steps.meta.outputs.tag }}
+          docker tag ${{ matrix.component }}:${{ steps.meta.outputs.tag }} ${{ steps.image.outputs.name }}:latest
+          docker push ${{ steps.image.outputs.name }}:${{ steps.meta.outputs.tag }}
+          docker push ${{ steps.image.outputs.name }}:latest
 
       - name: Output image tag
-        run: echo "Pushed ${{ matrix.image }}:${{ steps.meta.outputs.tag }}"
+        run: echo "Pushed ${{ steps.image.outputs.name }}:${{ steps.meta.outputs.tag }}"
