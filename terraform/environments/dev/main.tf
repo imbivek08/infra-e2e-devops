@@ -38,6 +38,7 @@ module "rds" {
   db_password        = var.db_password
 }
 
+
 module "ecr" {
   source = "../../modules/ecr"
   env    = "dev"
