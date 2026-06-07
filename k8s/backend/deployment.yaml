@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: jerney-backend
-          image: imbivek01/blog-backend:087231a4
+          image: imbivek01/blog-backend:5667d925
           ports:
             - containerPort: 5000
           envFrom:
