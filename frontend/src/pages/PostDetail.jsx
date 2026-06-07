@@ -72,7 +72,7 @@ function PostDetail() {
 
         <div className="post-detail-actions">
           <Link to={`/edit/${post.id}`} className="btn btn-secondary btn-sm">
-            <HiPencil size={16} /> Edit
+            <HiPencil size={16} /> Edit Post
           </Link>
           <button className="btn btn-danger btn-sm" onClick={() => setShowDeleteModal(true)}>
             <HiTrash size={16} /> Delete

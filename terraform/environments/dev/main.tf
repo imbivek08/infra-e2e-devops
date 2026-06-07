@@ -38,7 +38,14 @@ module "rds" {
   db_password        = var.db_password
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4916545 (created the iac for the required infra)
+=======
+
+>>>>>>> 71ee96a (chages in prod infra)
 module "ecr" {
   source = "../../modules/ecr"
   env    = "dev"

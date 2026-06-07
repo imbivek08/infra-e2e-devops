@@ -50,7 +50,7 @@ function Home() {
           <p>Be the first to share your thoughts on this journey</p>
           <Link to="/create" className="btn btn-primary">
             <HiPlus size={18} />
-            Write something
+            Write something here
           </Link>
         </div>
       ) : (
